@@ -1,14 +1,14 @@
-import 'package:shopping_app/models/cart_item.dart';
+import 'package:shopping_getx/models/cart_item.dart';
 
 class Order {
-  final String id;
+  final String orderId;
   final double amount;
   final List<CartItem> products;
   final DateTime dateTime;
 
   Order(
-      {required this.id,
-      required this.amount,
-      required this.products,
-      required this.dateTime});
+      {required this.orderId,
+        required this.amount,
+        required this.products,
+        required this.dateTime});
 }

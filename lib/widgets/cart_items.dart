@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping_app/controllers/cart_controller.dart';
+import 'package:shopping_getx/controllers/cart_controller.dart';
 
 class CartItem extends StatelessWidget {
   final String id;
@@ -9,7 +9,7 @@ class CartItem extends StatelessWidget {
   final int quantity;
   final String title;
 
-  CartItem(this.id, this.price, this.quantity, this.title, this.productId);
+  const CartItem(this.id, this.price, this.quantity, this.title, this.productId, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,33 +18,33 @@ class CartItem extends StatelessWidget {
       key: ValueKey(id),
       background: Container(
         color: Theme.of(context).errorColor,
-        child: Icon(Icons.delete, color: Colors.white,size: 40,
+        child: const Icon(Icons.delete, color: Colors.white,size: 40,
 
         ),
         alignment: Alignment.centerRight,
-        padding: EdgeInsets.only(right: 20),
-        margin:  EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+        padding: const EdgeInsets.only(right: 20),
+        margin:  const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
 
       ),
       direction: DismissDirection.endToStart,
       onDismissed: (direction){
-        cartController.removeitem(productId);
+        cartController.removeItem(productId);
 
       },
       child: Card(
-        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
             leading: Chip(
               label: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('₦$price'),
+                child: Text('\$$price'),
               ),
               backgroundColor: Theme.of(context).primaryColor,
             ),
             title: Text(title),
-            subtitle: Text('Total: ₦${(price * quantity)}'),
+            subtitle: Text('Total: \$${(price * quantity)}'),
             trailing: Text('$quantity X'),
           ),
         ),

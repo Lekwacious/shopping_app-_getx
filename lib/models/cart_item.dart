@@ -1,12 +1,12 @@
 class CartItem {
   final String id;
-  final String title;
-  final int quantity;
-  final double price;
+  final String productTitle;
+  final int productQuantity;
+  final double productPrice;
 
   CartItem(
       {required this.id,
-      required this.title,
-      required this.quantity,
-      required this.price});
+        required this.productTitle,
+        required this.productQuantity,
+        required this.productPrice});
 }
