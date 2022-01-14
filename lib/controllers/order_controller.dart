@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
-import 'package:shopping_app/models/cart_item.dart';
-import 'package:shopping_app/models/order.dart';
+import 'package:shopping_getx/models/cart_item.dart';
+import 'package:shopping_getx/models/order.dart';
 
 class OrderController extends GetxController {
-  List<Order> _orders = [];
+  //final List<Order> _orders = [];
+  final _orders = [].obs;
 
   List<Order> get orders {
     return [..._orders];
@@ -13,10 +14,12 @@ class OrderController extends GetxController {
     _orders.insert(
         0,
         Order(
-            id: DateTime.now().toString(),
+            orderId: DateTime.now().toString(),
             products: cartProducts,
             amount: total,
-            dateTime: DateTime.now()));
+            dateTime: DateTime.now()
+        )
+    );
     update();
   }
 }

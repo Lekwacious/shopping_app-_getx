@@ -1,24 +1,22 @@
 import 'dart:core';
-
 import 'package:get/get.dart';
-import 'package:shopping_app/models/cart_item.dart';
+import 'package:shopping_getx/models/cart_item.dart';
 
 class CartController extends GetxController {
-   Map<int, CartItem> _items = {};
+  Map<int, CartItem> _items = {};
 
   Map<int, CartItem> get items {
     return {..._items};
   }
 
-  int get itemCount{
-      // return  _items?.length?? 0;
-  return _items.length;
-
+  int get itemCount {
+    return _items.length;
   }
-  double get totalAmount{
+
+  double get totalAmount {
     var total = 0.0;
     _items.forEach((key, cartItem) {
-      total += cartItem.price * cartItem.quantity;
+      total += cartItem.productPrice * cartItem.productQuantity;
     });
     return total;
   }
@@ -28,31 +26,31 @@ class CartController extends GetxController {
       _items.update(
           productId,
           (existingCartItem) => CartItem(
-              id: existingCartItem.id,
-              title: existingCartItem.title,
-              quantity: existingCartItem.quantity + 1,
-              price: existingCartItem.price));
-      update();
-
+            id: existingCartItem.id,
+            productTitle: existingCartItem.productTitle,
+            productQuantity: existingCartItem.productQuantity + 1,
+            productPrice: existingCartItem.productPrice)
+      );
     } else {
       _items.putIfAbsent(
         productId,
-        () => CartItem(
+            () => CartItem(
           id: DateTime.now().toString(),
-          title: title,
-          price: price,
-          quantity: 1,
+              productTitle: title,
+              productPrice: price,
+              productQuantity: 1,
         ),
       );
     }
     update();
   }
-  void removeitem(int productId){
+
+  void removeItem(int productId) {
     _items.remove(productId);
     update();
   }
 
-  void clear(){
+  void clear() {
     _items = {};
     update();
   }
