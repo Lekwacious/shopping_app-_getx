@@ -75,6 +75,13 @@ class ProductController extends GetxController {
         'https://cdn.shopify.com/s/files/1/0419/1525/products/1024x1024-Men-PremierLowTop-Black-3.4.jpg?v=1600270679'),
   ];
 
+  itemsAll(isF) {
+    if (isF) {
+      return _items.where((productItem) => productItem.isFavourite).toList();
+    }
+    return [..._items];
+  }
+  
   List<Product> get items{
     return [..._items];
   }
