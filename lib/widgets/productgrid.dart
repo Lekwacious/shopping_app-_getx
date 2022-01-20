@@ -47,6 +47,16 @@ class ProductsGrid extends StatelessWidget {
                 child: Image.network(
                   controller.itemsAll(showFavourites)[index].imageUrl,
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.amber,
+                      alignment: Alignment.center,
+                      child: const Text(
+                        'No Image!',
+                        style: TextStyle(fontSize: 30),
+                      ),
+                    );
+                  }
                 ),
               ),
               footer: GridTileBar(
