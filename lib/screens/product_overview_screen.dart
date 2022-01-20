@@ -15,7 +15,7 @@ enum FilterOptions {
 class ProductOverviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var _showOnlyFavourites = false;
+    var _showOnlyFavourites = false.obs;
     final controller = Get.put(ProductController());
     final cartController = Get.put(CartController());
 
@@ -30,10 +30,10 @@ class ProductOverviewPage extends StatelessWidget {
                     icon: Icon(Icons.more_vert),
                     onSelected: (FilterOptions selectedValue) {
                       if (selectedValue == FilterOptions.FAVOURITES) {
-                        _showOnlyFavourites = true;
-                        print(_showOnlyFavourites);
+                        _showOnlyFavourites.value = true;
+                        print(_showOnlyFavourites.value);
                       } else {
-                        _showOnlyFavourites = false;
+                        _showOnlyFavourites.value = false;
                       }
                     },
                     itemBuilder: (BuildContext context) => [
@@ -65,7 +65,7 @@ class ProductOverviewPage extends StatelessWidget {
         ],
       ),
       drawer: AppDrawer(),
-      body: ProductsGrid(_showOnlyFavourites),
+      body: ProductsGrid(_showOnlyFavourites.value),
     );
   }
 }
